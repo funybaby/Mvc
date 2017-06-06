@@ -1,10 +1,8 @@
 ﻿// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System;
 using System.IO;
 using System.Reflection;
-using System.Runtime.Loader;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
 namespace Microsoft.AspNetCore.Mvc.Razor.Compilation
@@ -13,13 +11,7 @@ namespace Microsoft.AspNetCore.Mvc.Razor.Compilation
     {
         public static readonly string PrecompiledViewsAssemblySuffix = ".PrecompiledViews";
 
-        public static Type GetManifestType(AssemblyPart assemblyPart, string typeName)
-        {
-            var assembly = GetFeatureAssembly(assemblyPart);
-            return assembly?.GetType(typeName);
-        }
-
-        private static Assembly GetFeatureAssembly(AssemblyPart assemblyPart)
+        public static Assembly GetFeatureAssembly(AssemblyPart assemblyPart)
         {
             if (assemblyPart.Assembly.IsDynamic || string.IsNullOrEmpty(assemblyPart.Assembly.Location))
             {
